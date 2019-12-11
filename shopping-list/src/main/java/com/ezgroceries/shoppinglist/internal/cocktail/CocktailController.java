@@ -17,8 +17,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/cocktails", produces = "application/json")
 public class CocktailController {
 
-    @Autowired
     private CocktailDBClient cocktailDBClient;
+
+    @Autowired
+    public CocktailController(CocktailDBClient cocktailDBClient) {
+        this.cocktailDBClient = cocktailDBClient;
+    }
 
     @GetMapping
     public List<Cocktail> getCocktails(@RequestParam String search) {
